@@ -5,7 +5,6 @@ import "constants.js" as Constants
 
 Page {
     id: addAccountsPage
-    property Person contact
     PageHeader {
         id: header
         text: qsTr("Add New Account")
