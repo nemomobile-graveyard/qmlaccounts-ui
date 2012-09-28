@@ -54,7 +54,11 @@ Page {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         clip: true
-        onAddNewAccount: {//TODO: open AddAccountspage
+        onAddNewAccount: {
+            Constants.loadSingleton("AddAccountsPage.qml", accountsListPage,
+                function(addAccounts) {
+                    pageStack.push(addAccounts);
+                })
         }
     }
     ToolBar {

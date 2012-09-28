@@ -13,6 +13,7 @@
 Q_DECL_EXPORT
 #endif
 
+#include "account-provider-model.h"
 
 //accounts-qt
 #include <Accounts/Manager>
@@ -35,7 +36,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     view = &stackView;
 #endif
 
+    AccountProviderModel *providerModel = new AccountProviderModel(application);
     QObject::connect(view->engine(), SIGNAL(quit()), application, SLOT(quit()));
+    view->rootContext()->setContextProperty("accountsproviderModel", providerModel);
     if (QFile::exists("main.qml"))
         view->setSource(QUrl::fromLocalFile("main.qml"));
     else
@@ -47,7 +50,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     view->viewport()->setAttribute(Qt::WA_NoSystemBackground);
     view->setResizeMode(QDeclarativeView::SizeRootObjectToView);
 
-    view->rootContext()->setContextProperty("systemAvatarDirectory", QDesktopServices::storageLocation(QDesktopServices::PicturesLocation));
+//    view->rootContext()->setContextProperty("systemAvatarDirectory", QDesktopServices::storageLocation(QDesktopServices::PicturesLocation));
     view->rootContext()->setContextProperty("DocumentsLocation", QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation));
     view->show();
 

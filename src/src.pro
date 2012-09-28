@@ -20,6 +20,8 @@ packagesExist(qdeclarative-boostable) {
 }
 
 SOURCES += main.cpp 
+    provider-helper.cpp \
+    account-provider-model.cpp
 RESOURCES += res.qrc
 
 QML_FILES = qml/*.qml
@@ -36,4 +38,6 @@ INSTALLS += desktop
 
 
 HEADERS += \
+    provider-helper.h \
+    account-provider-model.h
 
