@@ -19,7 +19,7 @@ packagesExist(qdeclarative-boostable) {
     warning("qdeclarative-boostable not available; startup times will be slower")
 }
 
-SOURCES += main.cpp 
+SOURCES += main.cpp \
     provider-helper.cpp \
     account-provider-model.cpp
 RESOURCES += res.qrc

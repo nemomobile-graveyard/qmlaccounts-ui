@@ -131,10 +131,12 @@ QVariant AccountProviderModel::data(const QModelIndex& index, int role) const
         (role == Qt::DisplayRole && index.column() == ProviderDescriptionColumn))
         return providerHelper->providerDescription();
 
-    if (index.column() == ProviderIcon)
+    if (role == ProviderIconRole ||
+            (role == Qt::DisplayRole && index.column() == ProviderIcon))
         return providerHelper->iconName();
 
-    if (index.column() == ProviderColumn) {
+    if (role == ColumnCountRole ||
+            (role == Qt::DisplayRole && index.column() == ProviderColumn)) {
         return QVariant::fromValue(providerHelper->provider());
     }
 
