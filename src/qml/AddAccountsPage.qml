@@ -16,32 +16,34 @@ Page {
         model: accountsproviderModel
         delegate: Item {
             width: parent.width; height: 85
-            Row{
-                width: parent.width
-                spacing: 50
-                Column {
-                    Image {
-                        id: imageItem
-                        fillMode: Image.PreserveAspectFit
-                        source: "image://theme/"+providerIcon
+            MouseArea {
+                anchors.fill : parent
+                Row{
+                    width: parent.width
+                    spacing: 50
+                    Column {
+                        Image {
+                            id: imageItem
+                            fillMode: Image.PreserveAspectFit
+                            source: "image://theme/"+providerIcon
+                        }
                     }
-
+                    Column {
+                        width: 380 //TODO: check why parent.width is not working
+                        Label {
+                            text: providerName
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                        Label {
+                            width: parent.width;
+                            font.pixelSize: 15
+                            wrapMode: Text.WordWrap
+                            text: providerDescription
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
                 }
-
-                Column {
-                    width: 380 //TODO: check why parent.width is not working
-                    Label {
-                        text: providerName
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                    Label {
-                        width: parent.width;
-                        font.pixelSize: 15
-                        wrapMode: Text.WordWrap
-                        text: providerDescription
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                }
+                onClicked: { console.log("Selected"); }
             }
         }
     }
