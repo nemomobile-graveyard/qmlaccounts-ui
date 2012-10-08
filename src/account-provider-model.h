@@ -25,7 +25,7 @@ public:
     enum Columns{
         ProviderNameColumn,
         ProviderDescriptionColumn,
-        ProviderIcon,
+        ProviderIconColumn,
         ProviderColumn,
         ColumnCount
     };

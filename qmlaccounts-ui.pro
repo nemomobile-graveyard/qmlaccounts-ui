@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
-SUBDIRS = src 
+SUBDIRS += src plugins 
 
 #this is just for testing, these files will be automatically created with libaccounts-ui
 #when it starts working.

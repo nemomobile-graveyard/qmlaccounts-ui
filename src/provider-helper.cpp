@@ -18,12 +18,10 @@ public:
         provider(p)
     {
         domDocument = provider.domDocument();
-        manager = new Manager(); //TODO: Replace this with libaccounts-ui singleton manager
     }
 
     QDomDocument domDocument;
     Accounts::Provider provider;
-    Accounts::Manager *manager;
 };
 
 

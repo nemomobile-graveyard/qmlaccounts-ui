@@ -7,7 +7,6 @@
 //accounts-qt
 #include <Accounts/Provider>
 #include <Accounts/Account>
-#include <Accounts/Manager>
 
 /*!
  * ProviderHelper class that takes the provider data and help in contructing UIs

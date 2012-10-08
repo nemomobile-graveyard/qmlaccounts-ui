@@ -2,6 +2,10 @@
 #include "account-provider-model.h"
 #include "provider-helper.h"
 
+//libaccounts-ui
+#include<AccountsUI/AccountsManagerSingleton>
+
+
 //Qt
 #include <QDebug>
 #include <QStringList>
@@ -34,14 +38,13 @@ AccountProviderModel::AccountProviderModel(QObject* parent)
     d->headerData.insert(ProviderNameRole, "providerName");
     d->headerData.insert(ProviderDescriptionRole, "providerDescription" );
     d->headerData.insert(ProviderIconRole, "providerIcon");
+    d->headerData.insert(ProviderRole, "provider");
     d->headerData.insert(ColumnCountRole, "columncount");
 
     setRoleNames(d->headerData);
-
-    d->manager = new Accounts::Manager(); //TODO: Replace this with libaccounts-ui singleton manager
-
     Accounts::ProviderList providers =
-        d->manager->providerList();
+        AccountsUI::AccountsManager::instance()->providerList();
+
     for (int i = 0; i < providers.size(); i++)
     {
         QDomDocument domDocument = providers[i].domDocument();
@@ -132,13 +135,12 @@ QVariant AccountProviderModel::data(const QModelIndex& index, int role) const
         return providerHelper->providerDescription();
 
     if (role == ProviderIconRole ||
-            (role == Qt::DisplayRole && index.column() == ProviderIcon))
+            (role == Qt::DisplayRole && index.column() == ProviderIconColumn))
         return providerHelper->iconName();
 
-    if (role == ColumnCountRole ||
-            (role == Qt::DisplayRole && index.column() == ProviderColumn)) {
+    if (role == ProviderRole ||
+            (role == Qt::DisplayRole && index.column() == ProviderColumn))
         return QVariant::fromValue(providerHelper->provider());
-    }
 
     return QVariant();
 }

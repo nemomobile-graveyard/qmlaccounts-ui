@@ -9,13 +9,21 @@ Page {
         id: header
         text: qsTr("Add New Account")
     }
+
     ListView {
+        id: providerListView
         width: parent.width; height: parent.height
         anchors.top : header.bottom
 
         model: accountsproviderModel
         delegate: Item {
             width: parent.width; height: 85
+            property variant myModel: model
+
+            function callPluginProcess(){
+                processCaller.createAccount(providerListView.currentItem.myModel.provider);
+            }
+
             MouseArea {
                 anchors.fill : parent
                 Row{
@@ -43,7 +51,7 @@ Page {
                         }
                     }
                 }
-                onClicked: { console.log("Selected"); }
+                onClicked: { callPluginProcess() }
             }
         }
     }

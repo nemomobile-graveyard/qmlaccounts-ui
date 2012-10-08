@@ -14,6 +14,7 @@ Q_DECL_EXPORT
 #endif
 
 #include "account-provider-model.h"
+#include "process-caller.h"
 
 //accounts-qt
 #include <Accounts/Manager>
@@ -39,6 +40,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     AccountProviderModel *providerModel = new AccountProviderModel(application);
     QObject::connect(view->engine(), SIGNAL(quit()), application, SLOT(quit()));
     view->rootContext()->setContextProperty("accountsproviderModel", providerModel);
+    //TODO: check where else it cant be done
+    ProcessCaller pCaller;
+    view->rootContext()->setContextProperty("processCaller", &pCaller);
+
+
     if (QFile::exists("main.qml"))
         view->setSource(QUrl::fromLocalFile("main.qml"));
     else

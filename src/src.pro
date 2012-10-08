@@ -6,7 +6,9 @@ QT += declarative
 TARGET = $$PROJECT_NAME
 
 CONFIG += link_pkgconfig
-PKGCONFIG += accounts-qt
+PKGCONFIG += \
+    accounts-qt \
+    AccountPlugin
 
 INCLUDEPATH += $${TOP_SRC_DIR}
 DEPENDPATH += $${INCLUDEPATH}
@@ -21,7 +23,9 @@ packagesExist(qdeclarative-boostable) {
 
 SOURCES += main.cpp \
     provider-helper.cpp \
-    account-provider-model.cpp
+    account-provider-model.cpp \
+    process-caller.cpp \
+    provider-plugin-proxy-singleton.cpp
 RESOURCES += res.qrc
 
 QML_FILES = qml/*.qml
@@ -39,5 +43,7 @@ INSTALLS += desktop
 
 HEADERS += \
     provider-helper.h \
-    account-provider-model.h
+    account-provider-model.h \
+    process-caller.h \
+    provider-plugin-proxy-singleton.h
 
