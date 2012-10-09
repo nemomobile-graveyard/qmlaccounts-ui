@@ -41,6 +41,11 @@ ListView {
         width: parent.width; height: 85
         property variant myModel: model
 
+        function callPluginProcess(){
+            /* Passing the account object being clicked */
+            processCaller.editAccount(groupedViewPortrait.currentItem.myModel.account);
+        }
+
         MouseArea {
             anchors.fill : parent
             Row{
@@ -68,7 +73,10 @@ ListView {
                     }
                 }
             }
-            onClicked: {qDebug("Account clicked");   }
+            onClicked: {
+                groupedViewPortrait.currentIndex = index;
+                callPluginProcess();
+            }
         }
     }
 

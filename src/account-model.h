@@ -21,6 +21,7 @@ class AccountModel : public QAbstractListModel
 public:
 
     enum Columns {
+        AccountColumn,
         AccountNameColumn,
         AccountIconColumn,
         ProviderNameColumn,
@@ -28,7 +29,8 @@ public:
     };
 
     enum Roles{
-        AccountNameRole = Qt::UserRole + 1,
+        AccountRole = Qt::UserRole + 1,
+        AccountNameRole,
         AccountIconRole,
         ProviderNameRole,
         ColumnCountRole

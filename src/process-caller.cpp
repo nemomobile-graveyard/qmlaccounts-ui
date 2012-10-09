@@ -18,3 +18,12 @@ void ProcessCaller::createAccount(Accounts::Provider provider)
      qDebug("plugin exist");
      pluginProcess->createAccount(provider, QString());
 }
+
+void ProcessCaller::editAccount(Accounts::Account *account)
+{
+    AccountsUI::ProviderPluginProxy *pluginProcess = ProviderPluginProxySingleton::instance();
+    if (!pluginProcess) {
+        return;
+    }
+    pluginProcess->editAccount(account, QString());
+}

@@ -27,6 +27,7 @@ AccountModel::AccountModel(QObject* parent)
 {
     Q_D(AccountModel);
     d->manager = AccountsUI::AccountsManager::instance();
+    d->headerData.insert(AccountRole, "account");
     d->headerData.insert(AccountNameRole, "accountName");
     d->headerData.insert(AccountIconRole, "accountIcon" );
     d->headerData.insert(ProviderNameRole, "providerName");
@@ -67,6 +68,10 @@ QVariant AccountModel::data(const QModelIndex &index, int role) const
 
     DisplayData *data = d->accountsList[index.row()];
     Accounts::Account *account = data->account;
+
+    if (role == AccountRole ||
+            (role == Qt::DisplayRole && index.column() == AccountColumn))
+        return QVariant::fromValue(account);
 
     if (role == AccountNameRole ||
             (role == Qt::DisplayRole && index.column() == AccountNameColumn))

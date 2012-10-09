@@ -51,7 +51,9 @@ Page {
                         }
                     }
                 }
-                onClicked: { callPluginProcess() }
+                onClicked: {
+                    providerListView.currentIndex = index;
+                    callPluginProcess(); }
             }
         }
     }
