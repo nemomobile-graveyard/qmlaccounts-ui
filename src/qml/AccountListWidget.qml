@@ -34,22 +34,44 @@ import com.nokia.meego 1.0
 
 ListView {
     id: groupedViewPortrait
-
     signal addNewAccount
-    anchors.fill: parent
-    model: accountsModel
-    delegate {
-        Item {
-          id: delegate
-          height: 30
-          width: delegate.ListView.view.width
+    width: parent.width; height: parent.height
+    model: accountModel
+    delegate: Item {
+        width: parent.width; height: 85
+        property variant myModel: model
 
-          Text {
-            anchors.fill: parent;
-            text: accountsModel.data(QModelIndex(0,0))
-          }
+        MouseArea {
+            anchors.fill : parent
+            Row{
+                width: parent.width
+                spacing: 50
+                Column {
+                    Image {
+                        id: imageItem
+                        fillMode: Image.PreserveAspectFit
+                        source: "image://theme/"+accountIcon
+                    }
+                }
+                Column {
+                    width: 380 //TODO: check why parent.width is not working
+                    Label {
+                        text: providerName
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    Label {
+                        width: parent.width;
+                        font.pixelSize: 15
+                        wrapMode: Text.WordWrap
+                        text: accountName
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+            }
+            onClicked: {qDebug("Account clicked");   }
         }
     }
+
 
     cacheBuffer: height
     section.property: "sectionBucket"

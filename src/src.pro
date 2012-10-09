@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     provider-helper.cpp \
     account-provider-model.cpp \
     process-caller.cpp \
-    provider-plugin-proxy-singleton.cpp
+    provider-plugin-proxy-singleton.cpp \
+    account-model.cpp
 RESOURCES += res.qrc
 
 QML_FILES = qml/*.qml
@@ -45,5 +46,6 @@ HEADERS += \
     provider-helper.h \
     account-provider-model.h \
     process-caller.h \
-    provider-plugin-proxy-singleton.h
+    provider-plugin-proxy-singleton.h \
+    account-model.h
 

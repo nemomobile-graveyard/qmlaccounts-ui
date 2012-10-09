@@ -64,13 +64,12 @@ public:
     int columnCount( const QModelIndex & index ) const;
 
     /*!
-     *  Provides a getter for the model-data depending on the index and the role provided as
-     *  Parameter.
+     *  Fetches data depending on the index and the role provided.
      */
     QVariant data( const QModelIndex &index, int role ) const;
 
     /*!
-     *  Derived from QAbstractTableModel - gives a way to get a QModelIndex
+     *  Derived from QAbstractTableModel - provides QModelIndex
      */
     QModelIndex index( int row, int column, const QModelIndex &parent = QModelIndex() ) const;
 

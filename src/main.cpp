@@ -14,6 +14,7 @@ Q_DECL_EXPORT
 #endif
 
 #include "account-provider-model.h"
+#include "account-model.h"
 #include "process-caller.h"
 
 //accounts-qt
@@ -37,8 +38,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     view = &stackView;
 #endif
 
+    AccountModel *accountModel = new AccountModel(application);
     AccountProviderModel *providerModel = new AccountProviderModel(application);
     QObject::connect(view->engine(), SIGNAL(quit()), application, SLOT(quit()));
+    view->rootContext()->setContextProperty("accountModel", accountModel);
     view->rootContext()->setContextProperty("accountsproviderModel", providerModel);
     //TODO: check where else it cant be done
     ProcessCaller pCaller;

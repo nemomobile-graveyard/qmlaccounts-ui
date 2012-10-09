@@ -50,9 +50,7 @@ Page {
     AccountListWidget {
         id: gvp
         anchors.top: header.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        width: parent.width; height: parent.height
         clip: true
         onAddNewAccount: {
             Constants.loadSingleton("AddAccountsPage.qml", accountsListPage,
