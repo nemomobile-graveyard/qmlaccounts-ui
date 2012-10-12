@@ -6,4 +6,5 @@ PageStackWindow {
     showToolBar: true;
 
     initialPage: AccountsPage{}
+    function accountCreated(){app.pageStack.pop();}
 }

@@ -2,7 +2,6 @@
 #include "provider-plugin-proxy-singleton.h"
 
 #include <AccountsUI/ProviderPluginProxy>
-#include <AccountsUI/AccountsManagerSingleton>
 
 #include <QDeclarativeView>
 #include <QDebug>

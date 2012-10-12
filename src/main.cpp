@@ -17,8 +17,8 @@ Q_DECL_EXPORT
 #include "account-model.h"
 #include "process-caller.h"
 
-//accounts-qt
-#include <Accounts/Manager>
+//libaccounts-ui
+#include <AccountsUI/AccountsManagerSingleton>
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -53,6 +53,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     else
         view->setSource(QUrl("qrc:/qml/main.qml"));
 
+    Accounts::Manager *manager = AccountsUI::AccountsManager::instance();
+    QObject::connect(manager, SIGNAL(accountCreated(Accounts::AccountId)),
+                     view->rootObject(), SLOT(accountCreated()));
     view->setAttribute(Qt::WA_OpaquePaintEvent);
     view->setAttribute(Qt::WA_NoSystemBackground);
     view->viewport()->setAttribute(Qt::WA_OpaquePaintEvent);
