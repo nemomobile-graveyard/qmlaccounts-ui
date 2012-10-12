@@ -5,9 +5,5 @@ PageStackWindow {
     id: app
     showToolBar: true;
 
-    ToolBar {
-    }
-
-    initialPage: AccountsPage {}
-
+    initialPage: AccountsPage{}
 }

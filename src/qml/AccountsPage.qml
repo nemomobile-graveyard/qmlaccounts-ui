@@ -59,18 +59,18 @@ Page {
                 })
         }
     }
+
     ToolBar {
-        visible: false
-        tools: ToolBarLayout {
-            id: toolBarLayout
-                anchors.horizontalCenter: parent.horizontalCenter
-                ToolButton {
-                    text: qsTr("Add Accounts")
-                }
+        ToolBarLayout {
+            anchors.horizontalCenter: parent.horizontalCenter
+            visible: gvp.count != 0
+
+            ToolButton {
+                text: "Add Accounts"
+                onClicked: groupedViewPortrait.addNewAccount();
+            }
         }
     }
-
-
 }
 
 

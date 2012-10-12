@@ -2,6 +2,10 @@
 #include "provider-plugin-proxy-singleton.h"
 
 #include <AccountsUI/ProviderPluginProxy>
+#include <AccountsUI/AccountsManagerSingleton>
+
+#include <QDeclarativeView>
+#include <QDebug>
 
 ProcessCaller::ProcessCaller()
 {}
@@ -16,6 +20,7 @@ void ProcessCaller::createAccount(Accounts::Provider provider)
          return;
      }
      qDebug("plugin exist");
+
      pluginProcess->createAccount(provider, QString());
 }
 

@@ -73,6 +73,9 @@ public:
     */
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role) const;
+private slots:
+    void accountCreated(Accounts::AccountId id);
+
 
 private:
     AccountModelPrivate* d_ptr;

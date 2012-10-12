@@ -57,4 +57,18 @@ Page {
             }
         }
     }
+
+    ToolBar {
+        ToolBarLayout {
+            anchors.bottom: parent.bottom
+            visible: true
+
+            ToolIcon {
+                id: back
+                iconId: "toolbar-back";
+                onClicked: app.pageStack.pop()
+            }
+        }
+    }
+
 }

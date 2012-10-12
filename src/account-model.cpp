@@ -32,6 +32,8 @@ AccountModel::AccountModel(QObject* parent)
     d->headerData.insert(AccountIconRole, "accountIcon" );
     d->headerData.insert(ProviderNameRole, "providerName");
     d->headerData.insert(ColumnCountRole, "columncount");
+    QObject::connect(d->manager, SIGNAL(accountCreated(Accounts::AccountId)),
+                     this, SLOT(accountCreated(Accounts::AccountId)));
     setRoleNames(d->headerData);
     Accounts::AccountIdList idList = d->manager->accountList();
     foreach (Accounts::AccountId id, idList)
@@ -117,3 +119,14 @@ QVariant AccountModel::headerData(int section, Qt::Orientation orientation, int 
     return QVariant();
 }
 
+void AccountModel::accountCreated(Accounts::AccountId id)
+{
+    Q_D(AccountModel);
+    QModelIndex index;
+    Accounts::Account *account = d->manager->account(id);
+    if (account != 0) {
+        beginInsertRows(index, 0, 0);
+        d->accountsList.insert(0, new DisplayData(account));
+        endInsertRows();
+    }
+}
