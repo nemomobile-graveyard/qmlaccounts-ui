@@ -39,7 +39,13 @@ INSTALLS += target
 
 desktop.files = $${PROJECT_NAME}.desktop
 desktop.path = $$INSTALL_ROOT/usr/share/applications
-INSTALLS += desktop
+
+#this is just for testing, these files will be automatically created with libaccounts-ui
+#when it starts working.
+provider-example.files = ../google-example.provider
+provider-example.path = /usr/share/accounts/providers
+INSTALLS += desktop \
+    provider-example
 
 
 HEADERS += \
