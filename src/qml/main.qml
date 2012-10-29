@@ -7,4 +7,8 @@ PageStackWindow {
 
     initialPage: AccountsPage{}
     function accountCreated(){app.pageStack.pop();}
+
+    ToolBar {
+        anchors.bottom: parent.bottom
+    }
 }

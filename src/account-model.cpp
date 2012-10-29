@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "account-model.h"
 #include "provider-helper.h"
 
@@ -124,9 +126,64 @@ void AccountModel::accountCreated(Accounts::AccountId id)
     Q_D(AccountModel);
     QModelIndex index;
     Accounts::Account *account = d->manager->account(id);
+
+    QObject::connect(account, SIGNAL(removed()),
+                     this, SLOT(accountRemoved()));
+    QObject::connect(account, SIGNAL(enabledChanged(const QString, bool)),
+                     this, SLOT(accountUpdated()));
+
     if (account != 0) {
         beginInsertRows(index, 0, 0);
         d->accountsList.insert(0, new DisplayData(account));
         endInsertRows();
     }
 }
+
+void AccountModel::accountRemoved()
+{
+    Q_D(AccountModel);
+    Accounts::Account *account = qobject_cast<Accounts::Account *>(sender());
+
+    /* find the position of the deleted account in the list: QAbstractItemModel
+     * APIs need it */
+    int index = getAccountIndex(account);
+    if (index < 0)
+    {
+        qDebug() << "Account not present in the list:" << account->id();
+        return;
+    }
+
+    QModelIndex parent;
+    beginRemoveRows(parent, index, index);
+    DisplayData *data = d->accountsList[index];
+    d->accountsList.removeAt(index);
+    endRemoveRows();
+
+    delete data;
+}
+
+void AccountModel::accountUpdated()
+{
+    Accounts::Account *account = qobject_cast<Accounts::Account *>(sender());
+    int accountIndex = getAccountIndex(account);
+    if (accountIndex < 0)
+    {
+        qDebug() << "Account not present in the list:" << account->id();
+        return;
+    }
+
+    emit dataChanged(index(accountIndex, 0), index(accountIndex, 0));
+}
+
+int AccountModel::getAccountIndex(Accounts::Account *account) const
+{
+    Q_D(const AccountModel);
+    int index;
+    for (index = 0; index < d->accountsList.count(); index ++) {
+        const DisplayData *data = d->accountsList[index];
+        if (data->account == account)
+            break;
+    }
+    return index < d->accountsList.count() ? index : -1;
+}
+

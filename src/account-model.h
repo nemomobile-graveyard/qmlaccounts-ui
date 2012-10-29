@@ -45,6 +45,8 @@ public:
         Accounts::Account *account;
         QString providerName;
         QString accountIcon;
+
+        Q_DISABLE_COPY(DisplayData);
     };
 
 
@@ -75,6 +77,11 @@ public:
                         int role) const;
 private slots:
     void accountCreated(Accounts::AccountId id);
+    void accountRemoved();
+    void accountUpdated();
+
+private:
+    int getAccountIndex(Accounts::Account *account) const;
 
 
 private:
