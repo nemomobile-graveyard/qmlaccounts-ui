@@ -36,19 +36,13 @@ import "constants.js" as Constants
 
 Page {
     id: accountsListPage
-
     PageHeader {
         id: header
         text: qsTr("Accounts")
     }
 
-    AddAccountsPage {
-        id: addAccountsPage
-    }
-
-
     AccountListWidget {
-        id: gvp
+        id: accountList
         anchors.top: header.bottom
         width: parent.width; height: parent.height
         clip: true
@@ -60,15 +54,10 @@ Page {
         }
     }
 
-    ToolBar {
-        ToolBarLayout {
-            anchors.horizontalCenter: parent.horizontalCenter
-            visible: gvp.count != 0
-
-            ToolButton {
-                text: "Add Accounts"
-                onClicked: groupedViewPortrait.addNewAccount();
-            }
+    tools: ToolBarLayout {
+        ToolIcon {
+            iconId: "icon-m-common-add"
+            onClicked: accountList.addNewAccount();
         }
     }
 }

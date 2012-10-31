@@ -58,8 +58,7 @@ Page {
         }
     }
 
-    ToolBar {
-        ToolBarLayout {
+    tools:ToolBarLayout {
             anchors.bottom: parent.bottom
             visible: true
 
@@ -69,6 +68,5 @@ Page {
                 onClicked: app.pageStack.pop()
             }
         }
-    }
 
 }

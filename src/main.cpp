@@ -38,19 +38,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     view = &stackView;
 #endif
 
-    bool isFullscreen = false;
-    QStringList arguments = application->arguments();
-    for (int i = 0; i < arguments.count(); ++i) {
-        QString parameter = arguments.at(i);
-        if (parameter == "-fullscreen") {
-            isFullscreen = true;
-        } else if (parameter == "-help") {
-            qDebug() << "Accounts application";
-            qDebug() << "-fullscreen   - show QML fullscreen";
-            exit(0);
-        }
-    }
-
 
     AccountModel *accountModel = new AccountModel(application);
     AccountProviderModel *providerModel = new AccountProviderModel(application);
@@ -78,10 +65,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
 //    view->rootContext()->setContextProperty("systemAvatarDirectory", QDesktopServices::storageLocation(QDesktopServices::PicturesLocation));
     view->rootContext()->setContextProperty("DocumentsLocation", QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation));
-    if (isFullscreen)
-        view->showFullScreen();
-    else
-        view->show();
+    view->showFullScreen();
 
     return application->exec();
 }
