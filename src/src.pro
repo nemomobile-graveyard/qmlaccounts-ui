@@ -8,7 +8,8 @@ TARGET = $$PROJECT_NAME
 CONFIG += link_pkgconfig
 PKGCONFIG += \
     accounts-qt \
-    AccountPlugin
+    AccountPlugin \
+    QtDeclarative
 
 INCLUDEPATH += $${TOP_SRC_DIR}
 DEPENDPATH += $${INCLUDEPATH}

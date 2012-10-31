@@ -12,6 +12,7 @@ QT += xml
 PKGCONFIG += accounts-qt
 PKGCONFIG += libsignon-qt
 PKGCONFIG += AccountPlugin
+PKGCONFIG += QtDeclarative
 
 TARGET = genericplugin
 
